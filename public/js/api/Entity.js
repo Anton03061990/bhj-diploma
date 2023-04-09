@@ -15,8 +15,8 @@ class Entity {
       url: this.URL,
       method: 'GET',
       responseType: 'json',
-      data},
-      (response) => {callback(response)});      
+      callback,
+      data});      
   }
 
   /**
@@ -29,7 +29,8 @@ class Entity {
       url: this.URL,
       method: 'PUT',
       responseType: 'json',
-      data}, (response) => {callback(response)});
+      callback,
+      data});
 
   }
 
@@ -42,7 +43,8 @@ class Entity {
       url: this.URL,
       method: 'DELETE',
       responseType: 'json',
-      data}, (response) => {callback(response)});
+      callback,
+      data});
 
   }
 }

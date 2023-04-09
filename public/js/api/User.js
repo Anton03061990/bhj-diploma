@@ -36,7 +36,17 @@ class User {
    * авторизованном пользователе.
    * */
   static fetch(callback) {
-    callback();    
+    createRequest({
+      url: this.URL + '/current',
+      method: 'GET',
+      responseType: 'json',
+      callback: (err, response) => {
+        if (response && response.user) {
+          this.setCurrent(response.user);
+        }
+        callback(err, response);
+      }
+    });  
 
   }
 
@@ -68,20 +78,17 @@ class User {
    * User.setCurrent.
    * */
   static register(data, callback) {
-    this.URL = '/user'       
      createRequest({
       url: this.URL + '/register',
       method: 'POST',
       responseType: 'json',
-      data},
-       (response) => {  
+      callback:(err,response) => {  
           if (response.success && response.user) {         
           this.setCurrent(response.user);
-          callback();                  
-        } else  {
-          throw new Error(err);                 
-        }
-    }); 
+          callback(err,response);                  
+        } 
+      },
+      data}); 
 
   }
 
@@ -90,21 +97,18 @@ class User {
    * выхода необходимо вызвать метод User.unsetCurrent
    * */
   static logout(data, callback) {
-
-    this.URL = "/user";
     createRequest({
       url: this.URL + '/logout',
       method: 'POST',
       responseType: 'json',
-      data:data.id},
-      (response) => {
+      data:data.id,
+      callback: (err,response) => {
         if (response && response.success) {          
           this.unsetCurrent();                  
-          callback();
-        } else {
-          throw new Error(err);
-        }        
+          callback(err,response);
+        }       
+    }
     })
   }
-  }
 
+}
