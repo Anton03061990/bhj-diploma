@@ -28,8 +28,7 @@ class User {
    * */
   static current() {
     return JSON.parse(localStorage.getItem('user'));
-
-  }
+}
 
   /**
    * Получает информацию о текущем
@@ -47,8 +46,7 @@ class User {
         callback(err, response);
       }
     });  
-
-  }
+}
 
   /**
    * Производит попытку авторизации.
@@ -89,19 +87,17 @@ class User {
         } 
       },
       data}); 
-
-  }
+}
 
   /**
    * Производит выход из приложения. После успешного
    * выхода необходимо вызвать метод User.unsetCurrent
    * */
-  static logout(data, callback) {
+  static logout(callback) {
     createRequest({
       url: this.URL + '/logout',
       method: 'POST',
       responseType: 'json',
-      data:data.id,
       callback: (err,response) => {
         if (response && response.success) {          
           this.unsetCurrent();                  
@@ -110,5 +106,4 @@ class User {
     }
     })
   }
-
 }

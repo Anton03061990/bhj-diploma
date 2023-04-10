@@ -3,7 +3,7 @@
  * на сервер.
  * */
 const createRequest = (options = {}) => {
-    const {url, headers, data, responseType, method, callback} = options;  
+    const {url, data, responseType, method, callback} = options;  
     const requestUrl = new URL(window.location.protocol + "//" + window.location.host + url);
     
     if (method === 'GET')
@@ -12,22 +12,19 @@ const createRequest = (options = {}) => {
       }
     
     const request = new XMLHttpRequest();
-    request.withCredentials = true; 
-    // for (const header in headers)
-      //   request.setRequestHeader(header, headers[header]);
       request.responseType = responseType;
 
       request.onload = function() {
-      if (request.status === 200)
         callback(request.response);
     };
+
+    const formData = new FormData();
 
     try {
       request.open(method, requestUrl);
       if (method === 'GET') {
         request.send();
       } else {
-        const formData = new FormData();
         for (const key in data)
           formData.append(key, data[key]);
         request.send(formData);
