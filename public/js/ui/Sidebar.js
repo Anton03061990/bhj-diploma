@@ -18,8 +18,11 @@ class Sidebar {
    * при нажатии на кнопку .sidebar-toggle
    * */
   static initToggleButton() {
-
-  }
+    document.querySelector('.sidebar-toggle').onclick = function() {
+      document.querySelector('body').classList.toggle('sidebar-open');
+      document.querySelector('body').classList.toggle('sidebar-collapse');
+    };
+}
 
   /**
    * При нажатии на кнопку входа, показывает окно входа

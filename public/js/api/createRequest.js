@@ -20,8 +20,9 @@ const createRequest = (options = {}) => {
 
     const formData = new FormData();
 
-    for (const key in data)
+    for (const key in data) {
     formData.append(key, data[key]);
+    };
 
     try {
       request.open(method, requestUrl);
