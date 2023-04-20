@@ -64,7 +64,7 @@ class TransactionsPage {
         if (question) {
           let callback = (error, response) => {
             if (!error) {
-              App.updateWidgets();
+              App.update();
             }
           };
           Account.remove({id: this.lastOptions.account_id}, callback);

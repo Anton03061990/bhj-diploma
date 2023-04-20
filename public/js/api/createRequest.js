@@ -4,7 +4,7 @@
  * */
 const createRequest = (options = {}) => {
     const {url, data, responseType, method, callback} = options;  
-    const requestUrl = new URL(url);
+    const requestUrl = new URL(document.location.origin + url);
     
     if (method === 'GET')
       for (const key in data) {
@@ -15,7 +15,7 @@ const createRequest = (options = {}) => {
       request.responseType = responseType;
 
       request.onload = function() {
-        callback(request.response);
+        callback(error, response);
     };
 
     const formData = new FormData();

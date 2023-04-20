@@ -65,7 +65,7 @@ class AccountsWidget {
         }
         this.registerEvents();
       }
-      createRequest({url: '/account', data, callback, method: 'GET'});
+      createRequest({url: '/account', data, callback, responseType, method: 'GET'});
     }
   }
 

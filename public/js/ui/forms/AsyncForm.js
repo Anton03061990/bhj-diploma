@@ -52,6 +52,6 @@ class AsyncForm {
    * данные, полученные из метода getData()
    * */
   submit() {
-    this.getData();
+    this.onSubmit(this.getData());
   }
 }
