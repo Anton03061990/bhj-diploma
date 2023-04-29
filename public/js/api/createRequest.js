@@ -6,16 +6,17 @@ const createRequest = (options = {}) => {
     const {url, data, responseType, method, callback} = options;  
     const requestUrl = new URL(document.location.origin + url);
     
-    if (method === 'GET')
+    if (method === 'GET') {
       for (const key in data) {
         requestUrl.searchParams.set(key, data[key]);
       }
+    }      
     
     const request = new XMLHttpRequest();
-      request.responseType = responseType;
+    request.responseType = responseType;
 
-      request.onload = function() {
-        callback(error, response);
+    request.onload = function() {
+      callback(request.status, request.response);
     };
 
     const formData = new FormData();

@@ -51,12 +51,9 @@ class AccountsWidget {
    * метода renderItem()
    * */
   update() {
-    let user = User.current();
+    const user = User.current();
     if (user && user.id) {
-      let data = {
-        mail: user.email
-      };
-      let callback = (error, response) => {
+      const callback = (error, response) => {
         if (!error) {
           this.clear();
         }
@@ -65,7 +62,7 @@ class AccountsWidget {
         }
         this.registerEvents();
       }
-      createRequest({url: '/account', data, callback, responseType, method: 'GET'});
+      Account.get(user.id, callback);
     }
   }
 

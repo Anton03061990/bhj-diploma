@@ -33,11 +33,11 @@ class Sidebar {
    * */
   static initAuthLinks() {
     document.querySelector('.menu-item_register').onclick = function() {
-      let modal = App.getModal('register').open();
+      App.getModal('register').open();
     };
 
     document.querySelector('.menu-item_login').onclick = function() {
-      let modal = App.getModal('login').open();
+      App.getModal('login').open();
     };
 
     document.querySelector('.menu-item_logout').onclick = function() {
