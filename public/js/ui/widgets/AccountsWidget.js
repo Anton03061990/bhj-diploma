@@ -18,6 +18,7 @@ class AccountsWidget {
       throw new Error('Элемент не должен быть пустым!');
     }
     this.element = element;
+    this.registerEvents();
     this.update();
   }
 
@@ -60,9 +61,8 @@ class AccountsWidget {
         for (let item of response.data) {
           this.renderItem(item);
         }
-        this.registerEvents();
       }
-      Account.get(user.id, callback);
+      Account.get("", callback);
     }
   }
 
@@ -86,7 +86,6 @@ class AccountsWidget {
    * Вызывает App.showPage( 'transactions', { account_id: id_счёта });
    * */
   onSelectAccount(element) {
-    let currentAccount = this.element.querySelector('.account.active');
     let arr = document.querySelectorAll('.account');
     for (let item of arr) {
       item.classList.remove('active');
