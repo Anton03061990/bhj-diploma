@@ -16,7 +16,7 @@ const createRequest = (options = {}) => {
     request.responseType = responseType;
 
     request.onload = function() {
-      callback(request.status, request.response);
+      callback(null, request.response);
     };
 
     const formData = new FormData();

@@ -35,16 +35,13 @@ class TransactionsPage {
    * */
   registerEvents() {
     this.element.addEventListener('click', (e) => {
-      e.preventDefault();
-      let removeAccount = e.target.closest('.remove-account');
-      let transactionRemove = e.target.closest('.transaction__remove');
-
-      if (removeAccount) {
+      
+      if (e.target.closest('.remove-account')) {
         this.removeAccount();
-      }
-      if (transactionRemove) {
-        let id = transactionRemove.dataset.id;
-        this.removeTransaction(id);
+      };
+
+      if (e.target.closest('.transaction__remove')) {
+        this.removeTransaction(e.target.closest('.transaction__remove').getAttribute('data-id'));
       }
     });
   }
