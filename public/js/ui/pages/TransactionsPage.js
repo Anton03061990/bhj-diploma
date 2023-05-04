@@ -66,6 +66,7 @@ class TransactionsPage {
             if (!error) {
               App.update();
             }
+            this.clear();
           };
           Account.remove({id: this.lastOptions.account_id}, callback);
         }
